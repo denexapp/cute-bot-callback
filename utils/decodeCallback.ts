@@ -1,7 +1,7 @@
 import { JsonDecoder } from 'ts.data.json'
-import decode from './decode'
 import commands from '../commands'
 import callbackDecoder from './callbackDecoder'
+import decode from './decode'
 import variables from './variables'
 
 const decodeCallback = (data: unknown) => {
