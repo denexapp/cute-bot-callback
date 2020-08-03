@@ -1,0 +1,27 @@
+{
+  "name": "cute-bot-callback",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/denexapp/cute-bot-callback.git"
+  },
+  "author": "Denis Mukhametov (https://denexapp.me/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/denexapp/cute-bot-callback/issues"
+  },
+  "homepage": "https://github.com/denexapp/cute-bot-callback#readme",
+  "dependencies": {
+    "@now/node": "^1.5.1",
+    "ts.data.json": "^1.1.0",
+    "vk-ts": "^0.2.0"
+  },
+  "devDependencies": {
+    "typescript": "^3.9.7"
+  }
+}
