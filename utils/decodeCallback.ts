@@ -9,7 +9,7 @@ const decodeCallback = (data: unknown) => {
     .values(commands)
     .map(command => callbackDecoder(command.type, variables.secret, command.decoder))
 
-  return decode(data, JsonDecoder.oneOf(decoders, 'Callback'))
+  return decode(data, decoders[0])
 }
 
 export default decodeCallback
