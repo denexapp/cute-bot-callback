@@ -1,7 +1,7 @@
 import { JsonDecoder } from 'ts.data.json'
+import decode from './decode'
 import commands from '../commands'
 import callbackDecoder from './callbackDecoder'
-import decode from './decode'
 import variables from './variables'
 
 const decodeCallback = (data: unknown) => {
@@ -9,7 +9,7 @@ const decodeCallback = (data: unknown) => {
     .values(commands)
     .map(command => callbackDecoder(command.type, variables.secret, command.decoder))
 
-  return decode(data, decoders[0])
+  return decode(data, JsonDecoder.oneOf(decoders, 'Callback'))
 }
 
 export default decodeCallback

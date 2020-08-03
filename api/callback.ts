@@ -4,10 +4,9 @@ import commands from '../commands'
 import { serverName } from '../utils/consts'
 
 export default async (req: NowRequest, res: NowResponse) => {
-  console.log(JSON.stringify(req.body))
   const data = decodeCallback(req.body)
   const response = await commands[data.type].command(data.object)
-  res.send({
+  res.json({
     response,
     serverName
   })
