@@ -1,18 +1,18 @@
 import { JsonDecoder } from 'ts.data.json'
+import variables from './variables'
 
-export interface Callback<Type extends string, Secret extends string, Response> {
+export interface Callback<Type extends string, Params> {
   type: Type
-  secret: Secret
-  object: Response
+  secret: typeof variables.secret
+  object: Params
 }
 
-const callbackDecoder = <Type extends string, Secret extends string, Response>(
+const callbackDecoder = <Type extends string, Params>(
   type: Type,
-  secret: Secret,
-  decoder: JsonDecoder.Decoder<Response>
-) => JsonDecoder.object<Callback<Type, Secret, Response>>({
+  decoder: JsonDecoder.Decoder<Params>
+) => JsonDecoder.object<Callback<Type, Params>>({
   type: JsonDecoder.isExactly(type),
-  secret: JsonDecoder.isExactly(secret),
+  secret: JsonDecoder.isExactly(variables.secret),
   object: decoder
 }, 'Callback')
 

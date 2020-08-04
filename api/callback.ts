@@ -5,7 +5,16 @@ import { serverName } from '../utils/consts'
 
 export default async (req: NowRequest, res: NowResponse) => {
   const data = decodeCallback(req.body)
-  const response = await commands[data.type].command(data.object)
+  let response
+
+  if (data.type === 'add') {
+    response = await commands[data.type].command(data.object)
+  }
+  
+  if (data.type === 'connect') {
+    response = await commands[data.type].command(data.object)
+  }
+
   res.json({
     response,
     serverName

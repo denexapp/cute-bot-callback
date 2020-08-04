@@ -1,21 +1,25 @@
-import { Command, CommandObject } from "."
-import vk from '../utils/vk'
 import { JsonDecoder } from 'ts.data.json'
+import { Command, CommandObject } from "."
+import callbackDecoder, { Callback } from '../utils/callbackDecoder'
+import vk from '../utils/vk'
 
-type AddParams = null
-type AddResult = null
+type Type = 'add'
+type Params = null
+type Result = null
 
-const command: Command<AddParams, AddResult> = async () => {
+const type: Type = 'add'
+
+const command: Command<Params, Result> = async () => {
   await vk.accountGetProfileInfo()
   return null
 }
 
-const decoder: JsonDecoder.Decoder<AddParams> = JsonDecoder.isNull(null)
+const decoder: JsonDecoder.Decoder<Callback<Type, Params>> = callbackDecoder(type, JsonDecoder.isNull(null))
 
-const add: CommandObject<'add', AddParams, AddResult> = {
+const add: CommandObject<Type, Params, Result> = {
   command,
   decoder,
-  type: 'add'
+  type
 }
 
 export default add

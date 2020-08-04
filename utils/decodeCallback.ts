@@ -1,15 +1,15 @@
 import { JsonDecoder } from 'ts.data.json'
-import decode from './decode'
 import commands from '../commands'
-import callbackDecoder from './callbackDecoder'
-import variables from './variables'
+import decode from './decode'
 
 const decodeCallback = (data: unknown) => {
   const decoders = Object
     .values(commands)
-    .map(command => callbackDecoder(command.type, variables.secret, command.decoder))
+    .map(command => command.decoder)
 
-  return decode(data, JsonDecoder.oneOf(decoders, 'Callback'))
+  type TypesBugWorkaround = Parameters<Parameters<typeof decoders[number]['onDecode']>[1]>[0]
+
+  return decode(data, JsonDecoder.oneOf<TypesBugWorkaround>(decoders, 'Callback'))
 }
 
 export default decodeCallback
