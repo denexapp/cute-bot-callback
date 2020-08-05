@@ -35,7 +35,7 @@ const command: Command<Params, Result> = async params => {
 
 const decoder: JsonDecoder.Decoder<Callback<Type, Params>> = callbackDecoder(type, JsonDecoder.object({
   date: JsonDecoder.number
-}, 'ConnectParams decoder'))
+}, 'Params decoder'))
 
 const connect: CommandObject<Type, Params, Result> = {
   command,

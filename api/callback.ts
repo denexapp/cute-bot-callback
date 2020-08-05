@@ -15,6 +15,10 @@ export default async (req: NowRequest, res: NowResponse) => {
     response = await commands[data.type].command(data.object)
   }
 
+  if (data.type === 'remove') {
+    response = await commands[data.type].command(data.object)
+  }
+
   res.json({
     response,
     serverName
