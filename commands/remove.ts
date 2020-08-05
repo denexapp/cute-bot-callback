@@ -1,7 +1,6 @@
 import { JsonDecoder } from 'ts.data.json'
 import { Command, CommandObject } from "."
 import callbackDecoder, { Callback } from '../utils/callbackDecoder'
-import { connectCommand } from '../utils/consts'
 import vk from '../utils/vk'
 
 type Type = 'remove'
