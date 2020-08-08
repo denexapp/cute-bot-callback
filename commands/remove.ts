@@ -23,7 +23,9 @@ const command: Command<Params, Result> = async params => {
   }
   const { id } = item
   const results = await vk.messagesDelete(id, true)
+  console.log(id)
   console.log(JSON.stringify(results))
+  console.log(results[id])
   const result = results[id] === 1
   
   if (!result) {
