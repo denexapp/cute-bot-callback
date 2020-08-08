@@ -16,7 +16,12 @@ const type: Type = 'remove'
 
 const command: Command<Params, Result> = async params => {
   const { chatId, conversationMessageId } = params
-  const { items: [{ id }] } = await vk.messagesGetByConversationMessageId(chatId, conversationMessageId)
+  const { items: [item] } = await vk.messagesGetByConversationMessageId(chatId, conversationMessageId)
+  if (item === undefined) {
+    // item is already removed
+    return null
+  }
+  const { id } = item
   const results = await vk.messagesDelete(id, true)
   const result = results[id] === 1
   
