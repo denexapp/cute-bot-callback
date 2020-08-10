@@ -1,2 +1,2 @@
 # Cute Bot callback server
-Callback server to make request with user access token
+A callback server for Cute Bot to make request with user access token
