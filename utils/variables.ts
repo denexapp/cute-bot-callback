@@ -1,18 +1,21 @@
-import { JsonDecoder } from 'ts.data.json'
-import decode from './decode'
+import { JsonDecoder } from "ts.data.json";
+import decode from "./decode";
 
 interface Variables {
-  secret: string
-  accessToken: string
+  secret: string;
+  accessToken: string;
 }
 
-const variablesDecoder = JsonDecoder.object<Variables>({
-  secret: JsonDecoder.string,
-  accessToken: JsonDecoder.string
-}, 'Variables Decoder')
+const variablesDecoder = JsonDecoder.object<Variables>(
+  {
+    secret: JsonDecoder.string,
+    accessToken: JsonDecoder.string,
+  },
+  "Variables Decoder"
+);
 
-const values = process.env
+const values = process.env;
 
-const variables = decode(values, variablesDecoder)
+const variables = decode(values, variablesDecoder);
 
-export default variables
+export default variables;

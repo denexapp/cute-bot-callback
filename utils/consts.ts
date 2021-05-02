@@ -1,2 +1,2 @@
-export const serverName = 'cute bot callback'
-export const connectCommand = '/callbackConnect'
+export const serverName = "cute bot callback";
+export const connectCommand = "/callbackConnect";

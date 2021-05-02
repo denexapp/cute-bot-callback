@@ -3,31 +3,20 @@ import { Command, CommandObject } from ".";
 import callbackDecoder, { Callback } from "../utils/callbackDecoder";
 import vk from "../utils/vk";
 
-type Type = "remove";
+type Type = "kick";
 
 type Params = {
-  conversationMessageId: number;
   chatId: number;
+  userId: number;
 };
 
 type Result = null;
 
-const type: Type = "remove";
+const type: Type = "kick";
 
 const command: Command<Params, Result> = async (params) => {
-  const { chatId, conversationMessageId } = params;
-  const {
-    items: [item],
-  } = await vk.messagesGetByConversationMessageId(
-    chatId,
-    conversationMessageId
-  );
-  if (item === undefined) {
-    // item is already removed
-    return null;
-  }
-  const { id } = item;
-  await vk.messagesDelete(id, true);
+  const { chatId, userId } = params;
+  await vk.messagesRemoveChatUser(chatId, userId);
   return null;
 };
 
@@ -36,16 +25,16 @@ const decoder: JsonDecoder.Decoder<Callback<Type, Params>> = callbackDecoder(
   JsonDecoder.object(
     {
       chatId: JsonDecoder.number,
-      conversationMessageId: JsonDecoder.number,
+      userId: JsonDecoder.number,
     },
     "Params decoder"
   )
 );
 
-const remove: CommandObject<Type, Params, Result> = {
+const kick: CommandObject<Type, Params, Result> = {
   command,
   decoder,
   type,
 };
 
-export default remove;
+export default kick;
